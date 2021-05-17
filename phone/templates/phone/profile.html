@@ -1,0 +1,36 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <div align="center">
+        {% if user.inv_ref == None %}
+        <form action="" method="POST" autocomplete="off">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit">enter</button>
+        </form>
+        {% else %}
+        <h4>Used referal : {{user.inv_ref}}</h4>
+        {% endif %}
+
+        <hr>
+        <h4>My referal code : {{own_ref}}</h4>
+
+        <hr>
+
+        <h3>Used my referal code:</h3>
+        {% for ref in ref_list %}
+        <h5>User: {{ref.number}}</h5>
+        {% endfor %}
+
+    </div>
+</body>
+</html>
+
+</body>
+</html>

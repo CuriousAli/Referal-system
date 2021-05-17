@@ -1,0 +1,19 @@
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enter</title>
+</head>
+<body>
+    <div align="center">
+        <form action="" method="POST" autocomplete="off">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit">enter</button>
+        </form>
+
+    </div>
+</body>
+</html>
