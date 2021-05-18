@@ -1,9 +1,6 @@
-from django.core.validators import RegexValidator
+
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-
-
-from phone.utils import generate_code
 
 
 class UserManager(BaseUserManager):
@@ -42,7 +39,7 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     number = models.CharField( max_length=15, unique=True)
-    my_ref = models.CharField(max_length=6, unique=True)
+    my_ref = models.CharField(max_length=6, unique=True, default=0000)
     inv_ref = models.CharField(max_length=6, blank=True, default=None, null=True)
     USERNAME_FIELD = 'number'
     REQUIRED_FIELDS = []
@@ -53,8 +50,6 @@ class User(AbstractUser):
 
     def save(self, *args, **kwargs):
         # protect current referal from rewriting
-        if self.my_ref == None:
-            self.my_ref = generate_code(6)
         super().save(*args, **kwargs)
 
 
