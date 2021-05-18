@@ -1,4 +1,4 @@
-This little project is part of test task, but i wanted to make complete referal system.
+This little project is part of test task, but i finish whole draft functions of referal system.
 
 Installation:
 pip install -r requirements.txt (Load modules from requirements.txt)
