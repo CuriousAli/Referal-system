@@ -2,11 +2,19 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
-from phone.forms import ReferalForm
+from phone.forms import *
 from phone.models import User
 from phone.utils import delay_func, generate_code
 from sms.forms import SmsForm
+
+
+class Registration(CreateView):
+    form_class = CustomRegForm
+    template_name = 'phone/registration.html'
+    success_url = reverse_lazy('enter')
 
 
 def enter(request):
@@ -51,7 +59,7 @@ def profile(request):
     form = ReferalForm()
     pk = request.session.get('pk')
     user = User.objects.get(pk=pk)
-    if user.my_ref == (0000 or "0000"):
+    if user.my_ref == (0 or "0"):
         user.my_ref = generate_code(6)
         user.save()
     own_ref = user.my_ref
@@ -68,5 +76,4 @@ def profile(request):
     return render(request, 'phone/profile.html', {'form': form, 'own_ref': own_ref, 'ref_list': ref_list, 'user': user})
 
 
-def registration(request):
-    pass
+

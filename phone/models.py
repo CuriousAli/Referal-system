@@ -39,7 +39,7 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     username = None
     number = models.CharField( max_length=15, unique=True)
-    my_ref = models.CharField(max_length=6, unique=True, default=0000)
+    my_ref = models.CharField(max_length=6, unique=True, default=0)
     inv_ref = models.CharField(max_length=6, blank=True, default=None, null=True)
     USERNAME_FIELD = 'number'
     REQUIRED_FIELDS = []

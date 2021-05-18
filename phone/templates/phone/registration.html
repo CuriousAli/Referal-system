@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div align="center">
+    <h3>Регистрация</h3>
+    <hr>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for f in form %}
+        <p><label for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }} </p>
+        <div> {{ f.errors }}</div>
+        {% endfor %}
+        <button type="submit">Регистрироваться</button>
+    </form>
+</div>
+
+</body>
+</html>
